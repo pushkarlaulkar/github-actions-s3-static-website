@@ -31,5 +31,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: me-south-1
       
-      - name: Running test command
-        run: aws s3 ls
+      - name: Uploading index.html to S3 bucket
+        run: aws s3 cp index.html s3://github-actions-static-website/index.html
