@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Check AWS CLI version
-        run: aws --version
+        run: sudo aws --version
