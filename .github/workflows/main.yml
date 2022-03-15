@@ -15,12 +15,12 @@ jobs:
       - name: Checking AWS CLI version
         run: aws --version
 
-      #- name: Providing AWS credentials
-       # uses: aws-actions/configure-aws-credentials@v1
-        #with:
-         # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          #aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          #aws-region: me-south-1
+      - name: Providing AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: me-south-1
       
-      #- name: Uploading index.html to S3 bucket
-       # run: aws s3 cp index.html s3://github-actions-static-website/index.html
+      - name: Uploading index.html to S3 bucket
+        run: aws s3 cp index.html s3://github-actions-static-website/index.html
