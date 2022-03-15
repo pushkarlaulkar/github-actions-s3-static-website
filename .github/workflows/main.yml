@@ -9,9 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: amazon/aws-cli
     steps:
       - uses: actions/checkout@v2
 
-      - name: Check AWS CLI version
-        run: sudo aws --version
+      - name: Install AWS CLI
+        run: sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
