@@ -1,0 +1,17 @@
+name: GitHub Actions S3 website
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: amazon/aws-cli
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check AWS CLI version
+        run: aws --version
