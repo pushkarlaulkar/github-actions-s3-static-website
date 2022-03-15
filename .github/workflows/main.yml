@@ -24,5 +24,12 @@ jobs:
       - name: Checking AWS CLI version
         run: aws --version
 
+      - name: Providing AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: me-south-1
+      
       - name: Running test command
-        run: AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ AWS_SECRET_ACCESS_KEY }} aws s3 ls --region=me-south-1
+        run: aws s3 ls
