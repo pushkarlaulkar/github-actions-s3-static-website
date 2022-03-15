@@ -23,3 +23,6 @@ jobs:
         
       - name: Checking AWS CLI version
         run: aws --version
+
+      - name: Running test command
+        run: aws s3 ls --region=me-south-1
