@@ -1,0 +1,35 @@
+name: GitHub Actions S3 website
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download AWS CLI zip file
+        run: sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        
+      - name: Unzip AWS CLI zip
+        run: sudo unzip awscliv2.zip
+        
+      - name: Installing AWS CLI
+        run: sudo ./aws/install --update
+        
+      - name: Checking AWS CLI version
+        run: aws --version
+
+      - name: Providing AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: me-south-1
+      
+      - name: Uploading index.html to S3 bucket
+        run: aws s3 cp index.html s3://github-actions-static-website/index.html
