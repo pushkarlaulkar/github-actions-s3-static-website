@@ -20,3 +20,6 @@ jobs:
         
       - name: Installing AWS CLI
         run: sudo ./aws/install --update
+        
+      - name: Checking AWS CLI version
+        run: aws --version
